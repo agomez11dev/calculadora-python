@@ -1,7 +1,7 @@
-def suma(num1, num2):
+def sumar(num1, num2):
     return num1 + num2
     
-def resta(num1, num2):
+def restar(num1, num2):
     return num1 - num2
 
 def multiplicar(num1, num2):
@@ -16,11 +16,15 @@ def dividir(num1, num2):
 def promedio():
     notas = []
     while True:
-        nota = float(input("Ingresa una nota // Ingresa (-1) para finalizar: "))
+        try:
+            nota = float(input("Ingresa una nota // Ingresa (-1) para finalizar: "))
 
-        if nota == -1:
-            break
-        notas.append(nota)
+            if nota == -1:
+                break
+            notas.append(nota)
+
+        except ValueError:
+            print("Entrada inválida, ingresa un valor numérico.")
 
     if not notas:
         print("No se han ingresado notas.")
@@ -44,20 +48,31 @@ def main():
     while True:
         menu()
 
-        opcion = int(input("Selecciona la operación que deseas realizar: "))
+        try:
+            opcion = int(input("Selecciona la operación que deseas realizar: "))
+
+        except ValueError:
+            print("Error: Por favor, ingresa un número válido.")
+            continue
 
         if 1<= opcion <= 4:
-            num1 = float(input("Ingresa el primer número: "))
-            num2 = float(input("Ingresa el segundo número: "))
+
+            try:
+                num1 = float(input("Ingresa el primer número: "))
+                num2 = float(input("Ingresa el segundo número: "))
+
+            except ValueError:
+                print("Entrada inválida, ingresa un valor numérico.")
+                continue
 
             if opcion == 1:
                 print("\n ----SUMA----")
-                resultado = suma(num1, num2)
+                resultado = sumar(num1, num2)
                 print(f"Resultado: {resultado}")
     
             elif opcion == 2:
                 print("\n ----RESTA----")
-                resultado = resta(num1, num2)
+                resultado = restar(num1, num2)
                 print(f"Resultado: {resultado}")
 
             elif opcion == 3:
